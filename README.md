@@ -4,7 +4,9 @@ I Choose the subjetc : Codename
 
 Vous avez déjà joué à Codename ? Pour la suite, je vais considérer que non
 (si oui vous pouvez passer cette partie du brief)
-Le jeu est relativement simple
+
+Le jeu est relativement simple :
+
 Plusieurs joueurs sont divisés en équipe de 2, l’un est un agent secret l’autre
 son complice, le complice doit faire deviner à son agent différents mots en lui
 donnant des indices, la complexité réside dans le fait que l’agent ne voient
@@ -21,6 +23,7 @@ Le complice doit donc trouver les bons indices, tout en évitant de semer le
 doute dans la tête de son agent.
 Ajoutons également qu’il ne faut pas choisi comme indice des mots
 relativement proche, par exemple :
+
 - Si le mot à deviner est "cheval", l'indice ne devrait pas être "animal"
 (trop direct), mais plutôt quelque chose comme "galop", "ferme" ou
 "course" qui sont tous des mots associés à "cheval" sans le nommer
@@ -34,7 +37,9 @@ Attendus
 une communication “bidirectionnel” à partir des websocket
 - Dans le cadre de ce projet, nous allons considérer que le jeu ne devra
 gérer uniquement 2 équipes de 2.
-Fonctionnalités attendus
+
+Fonctionnalités attendus :
+
 - Je dois pouvoir rejoindre une partie à partir d’un lien / d’un mot de
 passe, dans ce cas le créateur de la partie est administrateur, et à le
 pouvoir de kick les joueurs
