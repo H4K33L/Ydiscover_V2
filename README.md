@@ -32,7 +32,9 @@ directement.
 deviner trop évident, ce qui réduirait la difficulté et l'intérêt du jeu. Par
 exemple, si le mot à deviner est "football", donner l'indice "sport" serait
 trop direct et éliminerait une grande partie du défi pour les devineurs.
-Attendus
+
+Attendus 
+
 - Vous devrez réaliser ce jeu avec NodeJS et ExpressJS, il est attendu
 une communication “bidirectionnel” à partir des websocket
 - Dans le cadre de ce projet, nous allons considérer que le jeu ne devra
