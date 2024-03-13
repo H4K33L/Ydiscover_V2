@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title= 'Code-name'
+    link(rel='stylesheet', href= '/stylesheets/Master.css')
+  body
+    nav(class= 'header')
+      h1 Your role : 
+      h1(id = 'role')  
+    article(class= 'header')
+      article(class= 'score')
+        h1 Purple Team : 
+        h1(id ='purpleScore')
+      article(class= 'scoret')
+        h1 Yelow Team :
+        h1(id ='yelowScore')
+    article(class= 'header')
+      h1(id = 'play')
+    article(class= 'header')
+      h1(id = 'clue')
+    article(class= 'header')
+      form(id = 'disapear' name = "form" method = 'get')
+        label(for="clue") clue :
+        input(type="text" placeholder='clue' name='clue')
+        input(type="number" placeholder='0' name="number")
+      a(id = 'next') End of your turn !
+    article(class = 'game_panel')
+      article(ID = '0' class = 'box')
+      article(ID = '1' class = 'box')
+      article(ID = '2' class = 'box')
+      article(ID = '3' class = 'box')
+      article(ID = '4' class = 'box')
+      article(ID = '5' class = 'box')
+      article(ID = '6' class = 'box')
+      article(ID = '7' class = 'box')
+      article(ID = '8' class = 'box')
+      article(ID = '9' class = 'box')
+      article(ID = '10' class = 'box')
+      article(ID = '11' class = 'box')
+      article(ID = '12' class = 'box')
+      article(ID = '13' class = 'box')
+      article(ID = '14' class = 'box')
+      article(ID = '15' class = 'box')
+      article(ID = '16' class = 'box')
+      article(ID = '17' class = 'box')
+      article(ID = '18' class = 'box')
+      article(ID = '19' class = 'box')
+      article(ID = '20' class = 'box')
+      article(ID = '21' class = 'box')
+      article(ID = '22' class = 'box')
+      article(ID = '23' class = 'box')
+      article(ID = '24' class = 'box')
+
+    script(type = 'module' src = '/javascripts/Master.js')

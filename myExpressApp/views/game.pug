@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= 'Code-name'
+    link(rel='stylesheet', href='/stylesheets/gamestyle.css')
+  body
+    nav(class= 'header')
+      img(src='/images/logo.png')
+    nav(class= 'header')
+      h1(id = 'roomID') Room ID : 
+    article(class = 'teamChoice')
+      article(class= 'team_purple')
+        h1 Purple Team
+        a(id = "purpleSPY" class='gamePurple') S.P.Y
+        a(id = "purpleMaster" class='gamePurple') Master
+      article(class= 'team_yelow')
+        h1 Yelow Team
+        a(id = "yelowSPY" class='gameYelow') S.P.Y
+        a(id = "yelowMaster" class='gameYelow') Master
+    
+    script(type = 'module' src='/javascripts/game.js')

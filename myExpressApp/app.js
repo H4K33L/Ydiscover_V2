@@ -5,7 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var gameRouter = require('./routes/game');
+var joinRouter = require('./routes/join');
+
+var SPY = require('./routes/SPY');
+var Master = require('./routes/Master');
 
 var app = express();
 
@@ -20,7 +24,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/game', gameRouter);
+app.use('/join', joinRouter);
+
+app.use('/spy', SPY);
+app.use('/master', Master);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,3 +47,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+console.log('http://localhost:3000');

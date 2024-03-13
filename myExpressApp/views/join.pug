@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= 'Code-name'
+    link(rel='stylesheet', href='/stylesheets/mainStyle.css')
+  body
+    nav(class= 'header')
+      img(src='/images/logo.png')
+    article(class= 'content')
+        form(name = "form" method = 'get')
+            label(for="RoomId") Room ID :
+            input(type="text" placeholder='Room ID' name='roomID')
+        a(id = "go" class= 'game') Go !
+
+    script(type = 'module' src='/javascripts/join.js')

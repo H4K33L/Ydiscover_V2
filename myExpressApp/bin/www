@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('myexpressapp:server');
 var http = require('http');
+var {Server} = require('socket.io');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -21,6 +23,109 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+
+/**
+ * Games funcs
+ */
+var io = new Server(server);
+
+io.on("connection", (socket) => {
+  console.info(`Client connected [id=${socket.id}]`);
+  console.log(io.sockets.server.engine.clientsCount);
+  socket.on('room', function(roomID) {
+    socket.join(roomID);
+    console.log('user connected on room :',roomID);
+    //
+    let test = io.sockets.adapter.rooms[roomID] || {};
+    var numSocketsInRoom = Object.keys(test).length;
+    console.log(numSocketsInRoom)
+    if(numSocketsInRoom > 4) {
+      socket.emit('deco', "");
+    };
+    //
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+
+    io.in(roomID).emit('requestRole', "");
+
+    socket.on("role", (role) =>{
+      console.info(`Client [id=${socket.id}]`);
+      console.log(role);
+      io.in(roomID).emit("del", role);
+      if (role !== 'purpleSPY' && role !== 'purpleMaster' && role !== 'yelowSPY' && role !== 'yelowMaster') {
+        socket.emit('deco', "");
+      };
+    });
+
+    socket.on('requestWords', ()=> {
+      fs.readFile("words.json", (err, data) => {
+        if (err){throw err}
+        
+        let list = JSON.parse(data).noms_communs;
+        let words = [];
+        let index =0;
+        while (index < 25) {
+          let rand = Math.floor(Math.random() * list.length);
+          let word = {
+            ID: index.toString(),
+            word: list[rand],
+            color: "white",
+            reaveled: false,
+          };
+          let notDouble = true;
+          for (let i = 0; i< words.length; i++) {
+            if (word.word === words[i].word) {
+              notDouble = false;
+              break;
+            };
+          };
+          if (notDouble) {
+            words.push(word);
+            index++;
+          };
+        };
+
+        words[Math.floor(Math.random() * words.length)].color = "black";
+
+        let i = 0;
+        while (i < 9) {
+          let rand = Math.floor(Math.random() * words.length);
+          if (words[rand].color === "white") {
+            i++;
+            words[rand].color = '#3B3486';
+          }
+        }
+
+        i = 0;
+        while (i < 8) {
+          let rand = Math.floor(Math.random() * words.length);
+          if (words[rand].color === "white") {
+            i++;
+            words[rand].color = '#F8E559';
+          }
+        }
+  
+        for (let i = 0; i < 25 ; i++) {
+          io.in(roomID).emit("updateWord", words[i]);
+        };
+        io.in(roomID).emit("turnTo", "purpleMaster");
+      });
+    });
+
+    socket.on("modifiateWord", (word)=> {
+      io.in(roomID).emit("updateWord", word);
+    });
+
+    socket.on("turnEnd", (next)=> {
+      io.in(roomID).emit("turnTo", next);
+    });
+
+    socket.on("clue", (clues)=> {
+      io.in(roomID).emit("newClue", clues);
+    });
+  });
+});
 /**
  * Listen on provided port, on all network interfaces.
  */
